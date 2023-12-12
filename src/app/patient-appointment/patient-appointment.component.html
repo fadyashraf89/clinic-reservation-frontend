@@ -1,0 +1,29 @@
+<div class="patient-appointment-container">
+  <h2>Select a Doctor</h2>
+  <select #doctorsOptions [(ngModel)]="selectedDoctor" (change)="getAvailableSlots(doctorsOptions.value)">
+    <option value="" >Select a doctor</option>
+    <option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.username }}</option>
+  </select>
+
+  <h2>Available Slots</h2>
+  <ul *ngIf="availableSlots && availableSlots.length > 0">
+    <li *ngFor="let slot of availableSlots">
+      <div *ngIf="slot.availability==true" >
+        {{  formatDate(slot.date,"MMM DD, YYYY" )}} - {{ slot.time }}
+        <button (click)="chooseSlot(slot)">Choose</button>
+      </div>
+      
+    </li>
+  </ul>
+
+  <h2>Reserved Slots</h2>
+  <ul >
+    <li *ngFor="let slot of mySlots">
+      <div  >
+        {{ formatDate(slot.date,"MMM DD, YYYY" )}} - {{ slot.time }}
+        <button (click)="cancelAppointment(slot.id)">cancel</button>
+      </div>
+      
+    </li>
+  </ul>
+</div>

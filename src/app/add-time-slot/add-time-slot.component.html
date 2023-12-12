@@ -1,0 +1,14 @@
+<div class="add-time-slot-container">
+    <h2>Add Time Slot</h2>
+    <form  #timeSlotForm="ngForm">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input #dateInput type="date" id="date" name="date" [(ngModel)]="timeSlot.date" required>
+      </div>
+      <div class="form-group">
+        <label for="time">Time</label>
+        <input #timeInput type="time" id="time" name="time" [(ngModel)]="timeSlot.time" required>
+      </div>
+      <button type="submit" (click)="addTimeSlot(dateInput.value,timeInput.value)" [disabled]="timeSlotForm.invalid">Add Time Slot</button>
+    </form>
+  </div>
